@@ -31,7 +31,7 @@ export default async function RecipesPage({
     throw new Error("API_KEY is not defined in the environment variables.");
   }
 
-  const { query, cuisine, time } = await searchParams;
+  const { query, cuisine, time } = searchParams;
 
   const numberTime = Number(time);
 

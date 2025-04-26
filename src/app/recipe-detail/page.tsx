@@ -17,7 +17,7 @@ async function getRecipeDetail(id: number, Api_Key: string) {
 export default async function RecipeDetail({
   searchParams,
 }: {
-  searchParams: { [key: string]: number };
+  searchParams: { [key: string]: string | string[] | undefined };
 }) {
   const Api_Key = process.env.API_KEY;
 
@@ -25,9 +25,11 @@ export default async function RecipeDetail({
     throw new Error("API_KEY is not defined in the environment variables.");
   }
 
-  const { id } = await searchParams;
+  const { id } = searchParams;
 
-  const data = await getRecipeDetail(id, Api_Key);
+  const convertedId = Number(id);
+
+  const data = await getRecipeDetail(convertedId, Api_Key);
 
   const { title, extendedIngredients, summary, image } = data;
   return (
