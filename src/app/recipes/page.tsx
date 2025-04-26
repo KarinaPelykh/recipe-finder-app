@@ -2,6 +2,8 @@ import { RecipesList } from "@/components/recipes-list/RecipesList";
 import { Suspense } from "react";
 import Loading from "./loading";
 
+type SearchParams = Promise<{ [key: string]: string }>;
+
 async function getRecipes(
   query: string,
   cuisine: string,
@@ -23,7 +25,7 @@ async function getRecipes(
 export default async function RecipesPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string };
+  searchParams: SearchParams;
 }) {
   const Api_Key = process.env.API_KEY;
 
@@ -31,7 +33,7 @@ export default async function RecipesPage({
     throw new Error("API_KEY is not defined in the environment variables.");
   }
 
-  const { query, cuisine, time } = searchParams;
+  const { query, cuisine, time } = await searchParams;
 
   const numberTime = Number(time);
 

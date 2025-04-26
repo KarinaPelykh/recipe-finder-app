@@ -3,6 +3,8 @@ import Image from "next/image";
 import { Suspense } from "react";
 import Loading from "./loading";
 
+type SearchParams = Promise<{ [key: string]: string }>;
+
 async function getRecipeDetail(id: number, Api_Key: string) {
   const res = await fetch(
     `https://api.spoonacular.com/recipes/${id}/information?apiKey=${Api_Key}`,
@@ -17,7 +19,7 @@ async function getRecipeDetail(id: number, Api_Key: string) {
 export default async function RecipeDetail({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: SearchParams;
 }) {
   const Api_Key = process.env.API_KEY;
 
@@ -25,7 +27,7 @@ export default async function RecipeDetail({
     throw new Error("API_KEY is not defined in the environment variables.");
   }
 
-  const { id } = searchParams;
+  const { id } = await searchParams;
 
   const convertedId = Number(id);
 
