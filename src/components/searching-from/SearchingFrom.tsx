@@ -11,7 +11,7 @@ export const SearchingForm = () => {
 
   const [option, setOption] = useState<string>("");
 
-  const [time, setTime] = useState<string>();
+  const [time, setTime] = useState<string>("");
 
   const handelSearch = () => {
     const params = `query=${query}&option=${option}&time=${time}`;
@@ -29,7 +29,7 @@ export const SearchingForm = () => {
         <input
           onChange={(e) => setQuery(e.target.value)}
           type="text"
-          className="w-full placeholder:text-black  text-black h-10 px-5 py-2.5 outline-none border-white border-2 rounded-xl"
+          className="w-full placeholder:text-black  text-black h-12 px-5 py-2.5 outline-none border-white border-2 rounded-xl"
           placeholder="dish"
           value={query}
         />
@@ -41,7 +41,7 @@ export const SearchingForm = () => {
         <input
           onChange={(e) => setTime(e.target.value)}
           type="number"
-          className="w-full placeholder:text-black  text-black h-10 px-5 py-2.5 outline-none border-white border-2 rounded-xl"
+          className="w-full placeholder:text-black  text-black h-12 px-5 py-2.5 outline-none border-white border-2 rounded-xl"
           placeholder="Preparation time"
           min={1}
           value={time}
