@@ -3,8 +3,8 @@ import { ReactNode } from "react";
 
 type ButtonProps = {
   children: ReactNode;
-  type: "button" | "submit";
-  IsFormEmpty: boolean;
+  type?: "button" | "submit";
+  IsFormEmpty?: boolean;
   onClick: () => void;
 };
 export const Button = ({

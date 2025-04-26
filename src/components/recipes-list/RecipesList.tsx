@@ -1,4 +1,6 @@
+"use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 type RecipeCard = {
   id: number;
@@ -11,10 +13,20 @@ type RecipesListProps = {
 };
 
 export const RecipesList = ({ results }: RecipesListProps) => {
+  const router = useRouter();
+
+  const handelGetId = (id: number) => {
+    router.push(`/recipe-detail?id=${id}`);
+  };
+
   return (
     <ul className="grid gap-10 mx-auto tablet:grid-cols-2 desktop:grid-cols-3">
       {results?.map(({ id, image, title }) => (
-        <li key={id} className="border rounded-3xl px-3.5 py-3 shadow-lg">
+        <li
+          onClick={() => handelGetId(id)}
+          key={id}
+          className="border bg-white  rounded-3xl px-3.5 py-3 shadow-lg transition-all hover:scale-120 cursor-pointer"
+        >
           <Image
             src={image}
             alt={title}
